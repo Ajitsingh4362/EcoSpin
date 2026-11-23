@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { WhatsAppIcon } from "./icons";
 import { priceList, stores, inr, waHref } from "@/data/site";
@@ -253,7 +254,11 @@ export function BagBuilder() {
           <WhatsAppIcon className="size-5" /> Send bag & book pickup
         </a>
         <p className="mt-3 text-center text-xs text-white/50">
-          Estimate only. Kids’ clothes (up to 10 yrs) cost about 70% of these prices.
+          Estimate only. Kids’ clothes (up to 10 yrs) cost about 70% of these prices.{" "}
+          <Link href="/terms" className="underline underline-offset-2 hover:text-white">
+            Terms apply
+          </Link>
+          .
         </p>
       </div>
 

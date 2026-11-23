@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { WhatsAppIcon } from "./icons";
 import { stores, waHref, formatPhone, telHref } from "@/data/site";
 
@@ -133,6 +134,13 @@ export function BookingForm() {
         >
           <WhatsAppIcon className="size-5" /> Send pickup request on WhatsApp
         </button>
+        <p className="w-full text-xs text-muted">
+          By booking you agree to our{" "}
+          <Link href="/terms" className="font-semibold text-purple underline underline-offset-2">
+            terms &amp; conditions
+          </Link>
+          .
+        </p>
         <p className="text-sm text-muted">
           Or call{" "}
           <a href={telHref(store.call)} className="font-semibold text-purple underline underline-offset-4">
