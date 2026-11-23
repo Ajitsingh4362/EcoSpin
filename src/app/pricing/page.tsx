@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { PriceTable } from "@/components/PriceTable";
+import { BagBuilder } from "@/components/BagBuilder";
 import { priceNotes } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -37,6 +38,15 @@ export default function PricingPage() {
           </p>
         </aside>
       </div>
+      <section className="bg-lavender">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
+          <h2 className="display text-5xl text-purple md:text-6xl">Fill your bag. See your bill.</h2>
+          <p className="mt-4 max-w-xl text-ink/75">Add items to get an instant estimate, then send the list to the store on WhatsApp.</p>
+          <div className="mt-10">
+            <BagBuilder />
+          </div>
+        </div>
+      </section>
     </>
   );
 }
