@@ -1,17 +1,23 @@
-# EcoSpin
+# EcoSpin Dry-Cleaners — website
 
-Laundry & dry-cleaning website built with **Next.js (App Router) + TypeScript + Tailwind CSS**, ready for **Vercel**.
+Next.js 16 (App Router) + TypeScript + Tailwind CSS v4. Fully static, deploys on Vercel with zero config.
+
+## Pages
+`/` home, `/services`, `/pricing` (searchable price list), `/stores` (both stores + maps), `/book` (pickup request sent via WhatsApp), `/about`, `/terms`
+
+## Editing content
+Store addresses, phone/WhatsApp numbers, timings, prices and services are all in **`src/data/site.ts`**.
+Change it there and every page updates. Photos are in `public/images/`.
 
 ## Local development
 ```bash
 npm install
-npm run dev
+npm run dev     # http://localhost:3000
+npm run build   # same command Vercel runs
 ```
-Open http://localhost:3000
 
 ## Deploy on Vercel
-1. vercel.com → **Add New → Project** → import `Ajitsingh4362/EcoSpin`
-2. Framework preset: **Next.js** (auto-detected) → **Deploy**
-3. Project → **Settings → Domains** → add your domain and set the DNS records Vercel shows.
+1. vercel.com → Add New → Project → import `Ajitsingh4362/EcoSpin` → Deploy (Next.js is auto-detected).
+2. Settings → Domains → add `ecospin.co.in` and `www.ecospin.co.in`, then add the DNS records Vercel shows at your domain registrar.
 
-Every push to `main` deploys automatically.
+Every push to `main` redeploys automatically.
