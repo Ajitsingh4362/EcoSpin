@@ -18,6 +18,6 @@ npm run build   # same command Vercel runs
 
 ## Deploy on Vercel
 1. vercel.com → Add New → Project → import `Ajitsingh4362/EcoSpin` → Deploy (Next.js is auto-detected).
-2. Settings → Domains → add `ecospin.co.in` and `www.ecospin.co.in`, then add the DNS records Vercel shows at your domain registrar.
+2. Settings → Domains → add `ecospindrycleaners.com` and `www.ecospindrycleaners.com`, then add the DNS records Vercel shows at your domain registrar.
 
 Every push to `main` redeploys automatically.

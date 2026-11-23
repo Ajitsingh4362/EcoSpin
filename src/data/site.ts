@@ -4,7 +4,7 @@ export const site = {
   name: "EcoSpin Dry-Cleaners",
   shortName: "EcoSpin",
   tagline: "Shine Naturally",
-  url: "https://www.ecospin.co.in",
+  url: "https://www.ecospindrycleaners.com",
   description:
     "EcoSpin Dry-Cleaners — dry cleaning, laundry, steam pressing, carpet & curtain cleaning with free pickup and delivery in Thane, Mulund and Kharghar (Navi Mumbai).",
   areasServed: ["Thane", "Mulund", "Kharghar", "Navi Mumbai"],
