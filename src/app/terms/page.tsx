@@ -10,13 +10,12 @@ export const metadata: Metadata = {
 };
 
 /*
- * NOTE FOR OWNER — please review before relying on these terms.
- * Points marked [CONFIRM] are standard dry-cleaning practice that EcoSpin should confirm or change:
- * claim window, compensation limit, unclaimed-garment period, payment modes and jurisdiction.
- * Everything else comes from the printed price lists.
+ * Source: EcoSpin's printed Terms & Conditions (18 points, back of the receipt book),
+ * the front of the receipt, and the printed price lists. Wording lightly edited for clarity only.
  */
 
 const LAST_UPDATED = "23 November 2026";
+const COMPLAINTS = "8657422355";
 
 type Section = { id: string; title: string; points: string[] };
 
@@ -25,97 +24,85 @@ const sections: Section[] = [
     id: "orders",
     title: "Orders, pickup & delivery",
     points: [
-      "Pickup and delivery are free within our service areas in Thane, Mulund and Navi Mumbai.",
+      "Free pickup and delivery is available on orders of at least 7 garments or a bill of ₹700.",
       "Dry cleaning orders need a minimum of 7 garments or a bill of ₹1,000.",
-      "Please make sure someone is available at the address during the agreed pickup and delivery time. If no one is available, we will reschedule to the next available slot.",
-      "Both stores are closed on Fridays. No pickups or deliveries happen on Fridays.",
-      "An order is confirmed once our team has collected the garments and issued a receipt or order number. Please keep it until delivery.",
+      "Please examine every garment thoroughly before handing it over. EcoSpin is not responsible for loss of or damage to valuables left in the garments.",
+      "The receipt given at pickup is to verify the quantity received. The kind of garment and the process it needs are confirmed at our process centre.",
+      "Both stores are closed on Fridays. The Kharghar store is open from 9:00 am to 9:00 pm.",
     ],
   },
   {
     id: "pricing",
-    title: "Prices & payment",
+    title: "Prices & charges",
     points: [
       "Prices are per piece as shown on our price list and are the same at both stores.",
-      "Garments not on the price list are charged in proportion to a similar listed item. We will tell you the price before cleaning.",
+      "Garments not on the price list are charged in proportion to a similar listed item.",
       "Children’s garments (up to 10 years) are charged at approximately 70% of the adult price.",
-      "Heavily embellished, designer or unusually large items may be charged more than the listed price. We will inform you before processing.",
-      "No service tax/GST is charged as of now. If tax becomes applicable, it will be added to the bill as per law.",
-      "Payment is due on delivery or collection, by cash or UPI. [CONFIRM]",
-      "Prices may change from time to time. The rate at the time your order is placed applies.",
+      "Clothes are returned folded as standard. Packing on hangers is charged extra.",
+      "Sofa cleaning at home has minimum charges: ₹800 for a 1-seater visit and ₹1,000 for a 2-seater visit.",
+      "Refer a friend to EcoSpin and get an extra discount — ask at the store.",
+      "These terms and the price list may change without prior notice.",
     ],
   },
   {
     id: "turnaround",
-    title: "Turnaround & express service",
+    title: "Delivery time & express service",
     points: [
-      "Regular turnaround is 5 working days for orders from the Thane store and 4 working days for orders from the Kharghar store.",
-      "Express service: same-day delivery at 100% extra and next-day delivery at 50% extra, subject to availability and the type of garment.",
-      "Delivery dates are estimates. Delays can happen due to the nature of the stain or fabric, festivals, holidays or circumstances beyond our control, and we will keep you informed.",
+      "Normal delivery is within 96 hours (4 days) of pickup. Orders through the Thane store take up to 5 working days.",
+      "Express delivery within 24 hours of pickup is charged 50% extra, and same-day delivery is charged 100% extra. No discount applies to express orders.",
+      "EcoSpin accepts no liability for delays caused by reasons beyond our control.",
     ],
   },
   {
     id: "care",
-    title: "Garment inspection & care",
+    title: "Cleaning & garment care",
     points: [
-      "Please empty all pockets before handing over garments. EcoSpin is not responsible for cash, jewellery, documents, pens or other items left in pockets, or for damage they cause.",
-      "Tell us about stains, existing damage, loose buttons or special instructions at the time of pickup. We inspect every piece at the first QC check and note anything we find.",
-      "We follow the manufacturer’s care label. Where there is no care label, we use the method we judge safest, at the customer’s risk.",
-      "We make every effort to remove stains, but some stains — especially old, set-in or previously treated ones — may not come out completely without damaging the fabric.",
-      "Normal wear from cleaning, such as slight fading, minor shrinkage within the fabric’s natural limit, or loosening of weak stitching, is not considered damage.",
-      "We are not responsible for damage to buttons, sequins, beads, zari, prints, linings or trims that are not suitable for cleaning, or for colour bleeding of fabrics that are not colourfast.",
-      "We may refuse to clean any garment we believe cannot be cleaned safely.",
+      "Our team is highly skilled and understands fabric, and we use hi-tech machines and eco-friendly solvents, detergents and chemicals. Even so, EcoSpin does not guarantee stain removal, or against damage caused while removing a stain.",
+      "EcoSpin does not guarantee against colour bleeding. Colour fastness depends on the quality of the fabric and dyeing by the manufacturer; we clean and serve your garments skilfully and technically.",
+      "Damage to old, long-stored or fragile garments is not EcoSpin’s responsibility.",
+      "Our experts decide whether a garment is dry cleaned or wet cleaned, based on the fabric and the manufacturer’s instructions.",
+      "Any damage that occurs while following the manufacturer’s care label instructions is not the responsibility of EcoSpin.",
+      "Innerwear is cleaned separately and steamed to refresh the fibres, but may not be ironed.",
+      "EcoSpin reserves the right to refuse service for any garment.",
     ],
   },
   {
     id: "claims",
     title: "Claims & compensation",
     points: [
-      "Please check your garments at the time of delivery. Any complaint must be reported to the store within 48 hours of delivery, with the garment and its EcoSpin tag. [CONFIRM]",
-      "If a garment is damaged or lost due to our negligence, our liability is limited to a maximum of 10 times the cleaning charge of that garment. [CONFIRM]",
-      "If you are not happy with the cleaning, we will re-process the garment free of charge once, provided it is reported within the claim period.",
-      "No claim will be accepted once the garment has been worn, washed or altered after delivery.",
+      "Please check all garments at the time of delivery. Any loss or damage must be reported within 24 hours of receiving the garments, along with a copy of the bill.",
+      "If a garment is misplaced or damaged, our liability is 5 to 10 times the billing price of that garment, subject to the approval of the laundry manager.",
+      "EcoSpin is not responsible for loss of or damage to clothing caused by fire, theft, accidents or other causes beyond our control.",
+      `For any problem or complaint, contact us on ${"8657 422 355"} with the bill copy of the garment and our invoice, and our team will do the needful.`,
     ],
   },
   {
     id: "unclaimed",
     title: "Uncollected garments",
     points: [
-      "Garments not collected or accepted for delivery within 30 days of the due date may attract a storage charge. [CONFIRM]",
-      "Garments not collected within 90 days of the due date may be donated or disposed of, and no claim will be accepted after that. [CONFIRM]",
-    ],
-  },
-  {
-    id: "home",
-    title: "Sofa & home cleaning",
-    points: [
-      "Sofa cleaning is done at your home. Minimum charges apply: ₹800 for a 1-seater visit and ₹1,000 for a 2-seater visit.",
-      "Please provide access to water and electricity, and clear the area around the sofa before our team arrives.",
-      "Drying time depends on fabric and weather. Please avoid using the sofa until it is fully dry.",
+      "EcoSpin is not responsible for garments that are not collected or called for within 7 days of the pickup date.",
+      "Unclaimed garments are kept safely for a maximum of 30 days, after which EcoSpin is not responsible for them.",
+      "A safe-keeping charge of ₹5 per piece per day applies from 15 days after the delivery date.",
     ],
   },
   {
     id: "general",
     title: "General",
     points: [
-      "By booking a pickup, dropping garments at a store or using our services, you agree to these terms.",
-      "EcoSpin may update these terms at any time. The version on this page at the time of your order applies.",
-      "Any dispute is subject to the jurisdiction of the courts in Thane, Maharashtra. [CONFIRM]",
+      "By booking a pickup, handing over garments or signing our receipt, you confirm that you have read, understood and agree to these terms.",
+      "Any unresolved dispute will be settled legally under the applicable jurisdiction.",
     ],
   },
 ];
 
 const keyPoints = [
-  "Minimum 7 garments or ₹1,000 for dry cleaning",
-  "Turnaround: Thane 5, Kharghar 4 working days",
-  "Express: same day +100%, next day +50%",
-  "Empty pockets and point out stains at pickup",
-  "Report any problem within 48 hours of delivery",
-  "Stores closed on Fridays",
+  "Free pickup on 7+ garments or ₹700+",
+  "Normal delivery in 96 hours (4 days)",
+  "Express: 24 hours +50%, same day +100%",
+  "Empty pockets — we can’t be responsible for valuables",
+  "Report any problem within 24 hours, with your bill",
+  "Unclaimed clothes kept up to 30 days",
 ];
-
-// The [CONFIRM] markers are for the owner only; never show them on the live page.
-const clean = (t: string) => t.replace(/\s*\[CONFIRM\]/g, "");
 
 export default function TermsPage() {
   return (
@@ -172,7 +159,7 @@ export default function TermsPage() {
                     <span className="shrink-0 pt-0.5 text-sm font-semibold text-purple/60 tabular-nums">
                       {i + 1}.{j + 1}
                     </span>
-                    <span>{clean(p)}</span>
+                    <span>{p}</span>
                   </li>
                 ))}
               </ol>
@@ -181,8 +168,14 @@ export default function TermsPage() {
 
           {/* Contact */}
           <section className="mt-6 rounded-[2rem] bg-lavender p-6 md:p-8">
-            <h2 className="display text-3xl text-purple">Questions about these terms?</h2>
-            <p className="mt-2 text-ink/75">Call either store — we’re happy to explain.</p>
+            <h2 className="display text-3xl text-purple">Questions or a complaint?</h2>
+            <p className="mt-2 text-ink/75">
+              Call or WhatsApp{" "}
+              <a href={`https://wa.me/91${COMPLAINTS}`} className="font-semibold text-purple underline underline-offset-4">
+                {formatPhone(COMPLAINTS)}
+              </a>{" "}
+              with your bill copy, or call either store.
+            </p>
             <div className="mt-5 flex flex-wrap gap-3">
               {stores.map((st) => (
                 <a

@@ -44,7 +44,7 @@ export const stores: Store[] = [
     call: "8657422155",
     whatsapp: "8657422355",
     closedOn: "Friday",
-    hours: null,
+    hours: "9:00 am – 9:00 pm",
     turnaround: "4 working days",
     mapQuery: "Green Heritage CHS, Plot 79/80, Sector 20, Kharghar, Navi Mumbai 410210",
   },
@@ -243,11 +243,14 @@ export const priceList: PriceCategory[] = [
 ];
 
 export const priceNotes = [
+  "Free pickup on orders of at least 7 garments or a ₹700 bill.",
   "Minimum 7 garments or a ₹1,000 bill for dry cleaning.",
   "Express delivery: same day at 100% extra, next day at 50% extra.",
   "Kids’ clothes (up to 10 years) are charged at about 70% of the adult price.",
   "Any garment not listed is charged in proportion to a similar listed item.",
   "Regular turnaround: Thane 5 working days, Kharghar 4 working days.",
+  "Clothes come folded as standard. Packing on hangers is charged extra.",
+  "Refer a friend and get an extra discount — ask at the store.",
 ];
 
 export const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;

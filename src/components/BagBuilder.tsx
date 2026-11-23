@@ -45,6 +45,7 @@ export function BagBuilder() {
   const bagRef = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [packing, setPacking] = useState<"fold" | "hanger">("fold");
 
   const category = priceList.find((c) => c.slug === cat)!;
   const effectiveMode: Mode = category.columns === "price" ? "dc" : mode;
@@ -59,6 +60,7 @@ export function BagBuilder() {
   const dcCount = dcLines.reduce((n, l) => n + l.qty, 0);
   const dcTotal = dcLines.reduce((n, l) => n + l.qty * l.price, 0);
   const belowMinimum = dcCount > 0 && dcCount < 7 && dcTotal < 1000;
+  const belowPickup = count > 0 && count < 7 && subtotal < 700;
 
   const fill = Math.min(1, count / 14);
   const shownTotal = useCountUp(total);
@@ -90,6 +92,7 @@ export function BagBuilder() {
       ...rows,
       ``,
       `Delivery: ${speeds.find((s) => s.id === speed)!.label}`,
+      `Packing: ${packing === "hanger" ? "On hangers (extra charge)" : "Folded"}`,
       `*Estimated total: ${inr(total)}*`,
       name.trim() ? `\nName: ${name.trim()}` : "",
       address.trim() ? `Pickup address: ${address.trim()}` : "",
@@ -97,7 +100,7 @@ export function BagBuilder() {
       .filter((l, i, arr) => l !== "" || (arr[i - 1] ?? "") !== "")
       .join("\n")
       .trim();
-  }, [lines, speed, total, store, count, name, address]);
+  }, [lines, speed, total, store, count, name, address, packing]);
   const waLink = lines.length ? waHref(store.whatsapp, message) : undefined;
 
   return (
@@ -256,7 +259,29 @@ export function BagBuilder() {
           </div>
         </fieldset>
 
-        {belowMinimum && (
+        <fieldset className="mt-4">
+          <legend className="text-sm font-semibold text-white/80">Packing</legend>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            {(["fold", "hanger"] as const).map((p) => (
+              <label
+                key={p}
+                className="cursor-pointer rounded-xl bg-white/10 px-3 py-2 text-center ring-1 ring-white/15 transition-colors has-[:checked]:bg-white has-[:checked]:text-purple has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-mint"
+              >
+                <input type="radio" name="packing" className="sr-only" checked={packing === p} onChange={() => setPacking(p)} />
+                <span className="block text-sm font-semibold">{p === "fold" ? "Folded" : "On hangers"}</span>
+                <span className="block text-xs opacity-70">{p === "fold" ? "Standard" : "Extra charge"}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {belowPickup && (
+          <p className="mt-4 rounded-xl bg-white/15 px-4 py-3 text-sm text-[#fff1b8]">
+            Free pickup needs at least 7 garments or a ₹700 bill — add {7 - count} more{" "}
+            {7 - count === 1 ? "item" : "items"} or {inr(700 - subtotal)} worth.
+          </p>
+        )}
+        {!belowPickup && belowMinimum && (
           <p className="mt-4 rounded-xl bg-white/15 px-4 py-3 text-sm text-[#fff1b8]">
             Dry cleaning needs at least 7 garments or a ₹1,000 bill — add {7 - dcCount} more{" "}
             {7 - dcCount === 1 ? "garment" : "garments"} or {inr(1000 - dcTotal)} worth.

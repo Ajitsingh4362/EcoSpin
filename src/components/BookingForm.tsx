@@ -6,7 +6,7 @@ import { WhatsAppIcon } from "./icons";
 import { stores, waHref, formatPhone, telHref } from "@/data/site";
 
 const serviceOptions = ["Dry cleaning", "Laundry", "Steam pressing", "Bridal / ethnic wear", "Curtains / carpets", "Sofa cleaning at home", "Shoes / soft toys"];
-const slots = ["Morning (10 am – 1 pm)", "Afternoon (1 pm – 4 pm)", "Evening (4 pm – 8 pm)"];
+const slots = ["Morning (9 am – 12 pm)", "Afternoon (12 pm – 4 pm)", "Evening (4 pm – 9 pm)"];
 
 const field = "mt-1.5 w-full rounded-xl border border-lilac bg-white px-4 py-3 outline-none focus:border-purple";
 const label = "block text-sm font-semibold text-ink";
