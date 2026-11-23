@@ -147,7 +147,7 @@ export function StainWipe() {
   return (
     <div className="grid items-center gap-10 md:grid-cols-[1fr_1.1fr]">
       <div>
-        <h2 className="display text-5xl text-purple md:text-7xl">Go on, get that stain out.</h2>
+        <h2 data-reveal="mask" className="display text-5xl text-purple md:text-7xl">Go on, get that stain out.</h2>
         <p className="mt-5 max-w-md text-lg leading-relaxed text-ink/75">
           Coffee, curry, a leaky pen — rub the shirt with your finger or mouse. In real life, our stain team
           pre-treats every spot by hand before your clothes go into the machine.
@@ -180,7 +180,7 @@ export function StainWipe() {
         </div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-md">
+      <div data-reveal="pop" className="relative mx-auto w-full max-w-md">
         <div className={`absolute inset-6 rounded-full bg-purple/20 blur-3xl transition-opacity duration-700 ${done ? "opacity-100" : "opacity-0"}`} />
         <div className="relative rounded-[2.5rem] bg-lavender p-6">
           {/* Hanger */}
@@ -215,6 +215,7 @@ export function StainWipe() {
               onPointerUp={() => (last.current = null)}
               onPointerLeave={() => (last.current = null)}
               className="absolute inset-0 h-full w-full cursor-crosshair touch-none"
+              data-cursor="Rub!"
               role="img"
               aria-label="A white shirt with coffee, curry and ink stains. Rub to clean it."
             />

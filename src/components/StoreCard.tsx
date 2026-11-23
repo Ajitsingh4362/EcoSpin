@@ -4,7 +4,7 @@ import { type Store, formatPhone, telHref, waHref, mapsHref, mapsEmbed } from "@
 
 export function StoreCard({ store, withMap = false }: { store: Store; withMap?: boolean }) {
   return (
-    <article id={store.slug} className="scroll-mt-28 overflow-hidden rounded-3xl border border-lilac bg-white">
+    <article id={store.slug} className="group scroll-mt-28 overflow-hidden rounded-[2rem] border border-lilac bg-white transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_70px_-35px_rgba(92,35,123,0.55)]">
       {withMap && (
         <iframe
           title={`Map of ${store.name}`}
@@ -41,7 +41,8 @@ export function StoreCard({ store, withMap = false }: { store: Store; withMap?: 
         <div className="mt-6 flex flex-wrap gap-3">
           <a
             href={telHref(store.call)}
-            className="inline-flex items-center gap-2 rounded-full bg-purple px-5 py-3 font-semibold text-white hover:bg-purple-deep"
+            data-magnetic
+            className="btn-shine inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple to-purple-bright px-5 py-3 font-semibold text-white"
           >
             <Phone className="size-4" aria-hidden="true" /> {formatPhone(store.call)}
           </a>
@@ -49,7 +50,8 @@ export function StoreCard({ store, withMap = false }: { store: Store; withMap?: 
             href={waHref(store.whatsapp, "Hi EcoSpin, I’d like to book a pickup.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-eco px-5 py-3 font-semibold text-white hover:brightness-110"
+            data-magnetic
+            className="btn-shine inline-flex items-center gap-2 rounded-full bg-eco px-5 py-3 font-semibold text-white"
           >
             <WhatsAppIcon className="size-4" /> WhatsApp
           </a>

@@ -182,3 +182,312 @@ body {
 @keyframes turn {
   to { transform: rotate(360deg); }
 }
+
+/* =====================================================================
+   RICH LAYER — smooth scroll, reveals, cursor, bubbles, waves, intro
+   ===================================================================== */
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* ---------- Scroll reveals (only when JS is running) ---------- */
+html.js [data-reveal] {
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1),
+    clip-path 1.2s cubic-bezier(0.7, 0, 0.2, 1),
+    filter 0.9s ease;
+  transition-delay: var(--d, 0ms);
+}
+html.js [data-reveal="up"]:not(.is-in) {
+  opacity: 0;
+  transform: translateY(48px);
+  filter: blur(8px);
+}
+html.js [data-reveal="mask"]:not(.is-in) {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(35%) skewY(3deg);
+}
+html.js [data-reveal="mask"].is-in {
+  clip-path: inset(-10% -5% -20% -5%);
+}
+html.js [data-reveal="img"]:not(.is-in) {
+  clip-path: inset(18% 18% 18% 18% round 3rem);
+}
+html.js [data-reveal="img"] img {
+  transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html.js [data-reveal="img"]:not(.is-in) img {
+  transform: scale(1.18);
+}
+html.js [data-reveal="img"].is-in {
+  clip-path: inset(0 0 0 0 round 0);
+}
+html.js [data-reveal="pop"]:not(.is-in) {
+  opacity: 0;
+  transform: scale(0.6) rotate(-6deg);
+}
+
+/* ---------- Animated gradient text ---------- */
+.text-shimmer {
+  background: linear-gradient(100deg, #5c237b 0%, #9b4fd1 25%, #1ba636 50%, #9b4fd1 75%, #5c237b 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+/* ---------- Aurora blobs ---------- */
+.aurora > span {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: blob 18s ease-in-out infinite alternate;
+}
+.aurora > span:nth-child(2) { animation-duration: 22s; animation-delay: -6s; }
+.aurora > span:nth-child(3) { animation-duration: 26s; animation-delay: -12s; }
+@keyframes blob {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8%, -10%) scale(1.15); }
+  66% { transform: translate(-10%, 6%) scale(0.9); }
+  100% { transform: translate(4%, 10%) scale(1.05); }
+}
+
+/* ---------- Soap bubbles ---------- */
+.soap {
+  position: absolute;
+  bottom: -12%;
+  border-radius: 9999px;
+  pointer-events: auto;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.95) 0 6%, transparent 7%),
+    radial-gradient(circle at 70% 75%, rgba(255, 255, 255, 0.4) 0 4%, transparent 5%),
+    radial-gradient(circle at 50% 50%, transparent 58%, rgba(156, 245, 174, 0.35) 66%, rgba(201, 168, 230, 0.55) 74%, rgba(123, 52, 166, 0.35) 82%, rgba(255, 255, 255, 0.7) 90%, transparent 92%);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.6), inset -6px -8px 18px rgba(123, 52, 166, 0.18);
+  animation: soap-rise var(--t, 14s) linear var(--delay, 0s) infinite;
+}
+.soap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, rgba(255, 150, 220, 0.25), rgba(140, 220, 255, 0.25), rgba(156, 245, 174, 0.25), rgba(255, 230, 140, 0.25), rgba(255, 150, 220, 0.25));
+  mix-blend-mode: screen;
+  mask: radial-gradient(circle, transparent 62%, #000 68%, #000 88%, transparent 92%);
+  animation: turn 8s linear infinite;
+}
+@keyframes soap-rise {
+  0% { transform: translate(0, 0) scale(0.7); opacity: 0; }
+  8% { opacity: 1; }
+  50% { transform: translate(var(--sway, 30px), -60vh) scale(1); }
+  92% { opacity: 1; }
+  100% { transform: translate(calc(var(--sway, 30px) * -0.6), -120vh) scale(1.08); opacity: 0; }
+}
+.soap.popped {
+  animation: soap-pop 0.32s ease-out forwards !important;
+  pointer-events: none;
+}
+@keyframes soap-pop {
+  0% { scale: 1; opacity: 1; }
+  60% { scale: 1.35; opacity: 0.6; }
+  100% { scale: 1.6; opacity: 0; }
+}
+.droplet {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(201, 168, 230, 0.9);
+  pointer-events: none;
+  animation: droplet 0.6s ease-out forwards;
+}
+@keyframes droplet {
+  to { transform: translate(var(--x), var(--y)) scale(0.2); opacity: 0; }
+}
+
+/* ---------- Buttons: shine sweep ---------- */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s, background-color 0.3s;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+.btn-shine:hover {
+  box-shadow: 0 14px 30px -12px rgba(92, 35, 123, 0.55);
+}
+
+/* ---------- Waves between sections ---------- */
+.wave-a { animation: slosh-wide 14s linear infinite; }
+.wave-b { animation: slosh-wide 20s linear infinite reverse; }
+@keyframes slosh-wide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Floating chips ---------- */
+.bob { animation: bob 5s ease-in-out infinite; }
+.bob-2 { animation-delay: -1.7s; animation-duration: 6s; }
+.bob-3 { animation-delay: -3.1s; animation-duration: 7s; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+}
+
+/* ---------- Intro (first visit per session) ---------- */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #5c237b, #7b34a6);
+  color: #fff;
+  animation: intro-out 0.9s cubic-bezier(0.7, 0, 0.2, 1) 1.5s forwards;
+}
+#intro .intro-logo {
+  width: min(70vw, 26rem);
+  animation: intro-logo 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+#intro .intro-bar {
+  height: 3px;
+  width: min(50vw, 16rem);
+  margin: 1.5rem auto 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+#intro .intro-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-mint);
+  transform-origin: left;
+  animation: intro-bar 1.3s cubic-bezier(0.6, 0, 0.2, 1) both;
+}
+@keyframes intro-logo {
+  from { opacity: 0; transform: translateX(-12%) skewX(-10deg); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes intro-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes intro-out {
+  to { clip-path: inset(0 0 100% 0); visibility: hidden; pointer-events: none; }
+}
+html[data-intro="seen"] #intro {
+  display: none;
+}
+html:not([data-intro="seen"]) .headline-line {
+  animation-delay: 1.75s;
+}
+html:not([data-intro="seen"]) .headline-line + .headline-line {
+  animation-delay: 1.9s;
+}
+
+/* ---------- Bubble cursor (desktop only) ---------- */
+.cursor-bubble {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 9999px;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  font: 700 italic 0.95rem var(--font-display);
+  color: #fff;
+  background: radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%), radial-gradient(circle, rgba(201, 168, 230, 0.08) 55%, rgba(123, 52, 166, 0.45) 75%, rgba(156, 245, 174, 0.5) 88%, transparent 92%);
+  transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), margin 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s;
+  will-change: transform;
+}
+.cursor-bubble.is-hover {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+}
+.cursor-bubble.has-label {
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  background: radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.7) 0 6%, transparent 7%), radial-gradient(circle, rgba(92, 35, 123, 0.85) 60%, rgba(156, 245, 174, 0.7) 85%, transparent 90%);
+}
+.cursor-ripple {
+  position: fixed;
+  z-index: 89;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 9999px;
+  border: 2px solid rgba(123, 52, 166, 0.6);
+  pointer-events: none;
+  animation: ripple 0.6s ease-out forwards;
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ---------- WhatsApp pulse ---------- */
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-eco);
+  animation: pulse-ring 2.4s ease-out infinite;
+  z-index: -1;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+  }
+  #intro,
+  .cursor-bubble,
+  .soap {
+    display: none !important;
+  }
+}
+@keyframes pop-in {
+  from { transform: scale(0.6) translateY(20px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}

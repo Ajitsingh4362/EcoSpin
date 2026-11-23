@@ -19,7 +19,7 @@ export default function BookPage() {
         <div className="min-w-0">
           <BookingForm />
         </div>
-        <aside className="self-start rounded-3xl bg-lavender p-6">
+        <aside data-reveal="up" className="self-start rounded-3xl bg-lavender p-6 lg:sticky lg:top-28">
           <h2 className="display text-3xl text-purple">Before you book</h2>
           <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/80">
             {priceNotes.slice(0, 2).concat(priceNotes[4]).map((n) => (

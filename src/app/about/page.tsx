@@ -19,7 +19,7 @@ export default function AboutPage() {
       />
 
       <section className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1.2fr_1fr] md:py-24">
-        <div className="space-y-5 text-lg leading-relaxed text-ink/80">
+        <div data-reveal="up" className="space-y-5 text-lg leading-relaxed text-ink/80">
           <p>
             We follow a high-tech model of laundry, with standard operating procedures in line with European standards.
             Our team of experienced professionals has worked in laundries in India and abroad, including five-star hotel
@@ -36,7 +36,7 @@ export default function AboutPage() {
           </p>
           <LogoHi className="h-10 w-auto pt-4 text-purple" />
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl md:aspect-auto">
+        <div data-reveal="img" className="relative aspect-[4/3] overflow-hidden rounded-[2rem] md:aspect-auto">
           <Image
             src="/images/team.webp"
             alt="Two EcoSpin team members in business suits"
@@ -50,10 +50,10 @@ export default function AboutPage() {
       <section className="bg-lavender">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-2 md:py-24">
           <div>
-            <h2 className="display text-5xl text-purple">Our strengths</h2>
+            <h2 data-reveal="mask" className="display text-5xl text-purple">Our strengths</h2>
             <ul className="mt-8 space-y-5">
               {strengths.map((s) => (
-                <li key={s.title}>
+                <li key={s.title} data-reveal="up">
                   <h3 className="font-semibold">{s.title}</h3>
                   <p className="mt-1 text-ink/75">{s.text}</p>
                 </li>
@@ -61,10 +61,10 @@ export default function AboutPage() {
             </ul>
           </div>
           <div>
-            <h2 className="display text-5xl text-purple">Our process</h2>
+            <h2 data-reveal="mask" className="display text-5xl text-purple">Our process</h2>
             <ol className="mt-8 space-y-3">
               {processSteps.map((s, i) => (
-                <li key={s} className="flex items-baseline gap-4 border-b border-lilac pb-3">
+                <li key={s} data-reveal="up" className="flex items-baseline gap-4 border-b border-lilac pb-3">
                   <span className="display w-8 text-2xl text-purple/50">{i + 1}</span>
                   <span className="font-medium">{s}</span>
                 </li>

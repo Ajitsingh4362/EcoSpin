@@ -22,7 +22,7 @@ export default function PricingPage() {
         <div className="min-w-0">
           <PriceTable />
         </div>
-        <aside className="self-start rounded-3xl bg-lavender p-6 lg:sticky lg:top-28">
+        <aside data-reveal="up" className="self-start rounded-3xl bg-lavender p-6 lg:sticky lg:top-28">
           <h2 className="display text-3xl text-purple">Good to know</h2>
           <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/80">
             {priceNotes.map((n) => (
@@ -42,7 +42,7 @@ export default function PricingPage() {
       </div>
       <section className="bg-lavender">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <h2 className="display text-5xl text-purple md:text-6xl">Fill your bag. See your bill.</h2>
+          <h2 data-reveal="mask" className="display text-5xl text-purple md:text-6xl">Fill your bag. See your bill.</h2>
           <p className="mt-4 max-w-xl text-ink/75">Add items to get an instant estimate, then send the list to the store on WhatsApp.</p>
           <div className="mt-10">
             <BagBuilder />

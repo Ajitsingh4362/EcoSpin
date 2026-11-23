@@ -147,7 +147,7 @@ export default function TermsPage() {
 
         <div className="min-w-0">
           {/* Summary */}
-          <section aria-labelledby="key-points" className="rounded-[2rem] bg-purple-deep p-6 text-white md:p-8">
+          <section data-reveal="up" aria-labelledby="key-points" className="rounded-[2rem] bg-gradient-to-br from-purple to-purple-bright p-6 text-white shadow-[0_30px_60px_-30px_rgba(92,35,123,0.7)] md:p-8">
             <h2 id="key-points" className="display text-4xl">The short version</h2>
             <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
               {keyPoints.map((k) => (
@@ -162,7 +162,7 @@ export default function TermsPage() {
           {/* Sections */}
           {sections.map((s, i) => (
             <section key={s.id} id={s.id} aria-labelledby={`${s.id}-title`} className="scroll-mt-28 border-b border-lilac py-10 last:border-b-0">
-              <h2 id={`${s.id}-title`} className="display flex items-baseline gap-4 text-4xl text-purple md:text-5xl">
+              <h2 data-reveal="mask" id={`${s.id}-title`} className="display flex items-baseline gap-4 text-4xl text-purple md:text-5xl">
                 <span className="text-purple/30 tabular-nums">{i + 1}</span>
                 {s.title}
               </h2>

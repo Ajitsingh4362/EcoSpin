@@ -18,7 +18,7 @@ const details = [
   "Back at your door, or ready for pickup at the store.",
 ];
 
-const tagColours = ["#ffffff", "#f3edf8", "#ffffff", "#e9fbe9"];
+const tagColours = ["#ffffff", "#fbf8fd", "#ffffff", "#f1fdf3"];
 
 export function Conveyor() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -68,20 +68,20 @@ export function Conveyor() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-purple-deep text-white" aria-labelledby="process-title">
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
-        <div className="mx-auto w-full max-w-6xl px-5 pt-24 md:pt-28">
-          <h2 id="process-title" className="display text-5xl md:text-7xl">
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-lavender to-lavender text-ink" aria-labelledby="process-title">
+      <div className="sticky top-0 flex h-screen flex-col justify-center gap-10 overflow-hidden md:gap-14">
+        <div className="mx-auto w-full max-w-6xl px-5 pt-16">
+          <h2 id="process-title" className="display text-5xl text-purple md:text-7xl">
             From your door, down our line, and back.
           </h2>
-          <p className="mt-4 max-w-xl text-white/70">
+          <p className="mt-4 max-w-xl text-ink/70">
             Twelve steps and three quality checks at our Thane unit. Keep scrolling to send your clothes down the line.
           </p>
         </div>
 
-        <div className="relative mt-auto mb-10 md:mb-14">
+        <div className="relative">
           {/* Rail */}
-          <div className="absolute top-0 right-0 left-0 h-3 bg-gradient-to-b from-[#d9cbe8] to-[#7d6a92] shadow-[0_6px_12px_rgba(0,0,0,0.4)]" />
+          <div className="absolute top-0 right-0 left-0 h-3 bg-gradient-to-b from-purple-bright to-purple shadow-[0_8px_16px_-4px_rgba(92,35,123,0.5)]" />
           <ol ref={trackRef} className="relative flex w-max gap-6 pr-[20vw] pl-5 will-change-transform md:gap-10 md:pl-[max(1.25rem,calc((100vw-72rem)/2+1.25rem))]">
             {processSteps.map((step, i) => {
               const qc = step.toLowerCase().includes("qc");
@@ -89,10 +89,10 @@ export function Conveyor() {
                 <li key={step} className="conveyor-item flex w-60 shrink-0 flex-col items-center md:w-72">
                   {/* Hanger hook */}
                   <svg viewBox="0 0 60 70" className="-mt-3 h-14 w-12" aria-hidden="true">
-                    <path d="M30,6 a8,8 0 1 1 8,8 L30,18 L30,30 L4,64 L56,64 L30,30" fill="none" stroke="#c9b8db" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
+                    <path d="M30,6 a8,8 0 1 1 8,8 L30,18 L30,30 L4,64 L56,64 L30,30" fill="none" stroke="#7b34a6" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
                   </svg>
                   <div
-                    className="relative -mt-1 w-full rounded-2xl p-6 text-ink shadow-[0_24px_40px_-16px_rgba(0,0,0,0.6)]"
+                    className="relative -mt-1 w-full rounded-2xl p-6 text-ink shadow-[0_30px_50px_-22px_rgba(92,35,123,0.55)] ring-1 ring-lilac/60"
                     style={{ background: tagColours[i % tagColours.length] }}
                   >
                     <span className="absolute top-3 left-1/2 size-3 -translate-x-1/2 rounded-full bg-purple-deep/80" aria-hidden="true" />
@@ -112,13 +112,13 @@ export function Conveyor() {
 
           {/* Day progress */}
           <div className="mx-auto mt-10 flex max-w-6xl items-center gap-5 px-5">
-            <span className="display shrink-0 text-2xl text-mint">
+            <span className="display shrink-0 text-2xl text-eco">
               Day <span ref={dayRef}>1</span>
             </span>
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/15">
-              <div ref={barRef} className="h-full origin-left rounded-full bg-mint" style={{ transform: "scaleX(0)" }} />
+            <div className="h-2 flex-1 overflow-hidden rounded-full bg-lilac/60">
+              <div ref={barRef} className="h-full origin-left rounded-full bg-gradient-to-r from-purple to-eco" style={{ transform: "scaleX(0)" }} />
             </div>
-            <span className="shrink-0 text-sm text-white/60">Delivered by day 4–5</span>
+            <span className="hidden shrink-0 text-sm text-muted sm:inline">Delivered by day 4–5</span>
           </div>
         </div>
       </div>

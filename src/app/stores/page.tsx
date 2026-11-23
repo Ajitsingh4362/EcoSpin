@@ -17,11 +17,13 @@ export default function StoresPage() {
         intro="Two stores, one owner and one central cleaning unit — so you get the same care and the same prices wherever you drop off."
       />
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-14 md:grid-cols-2 md:py-20">
-        {stores.map((s) => (
-          <StoreCard key={s.slug} store={s} withMap />
+        {stores.map((s, i) => (
+          <div key={s.slug} data-reveal="up" style={{ "--d": `${i * 150}ms` } as React.CSSProperties}>
+            <StoreCard store={s} withMap />
+          </div>
         ))}
       </div>
-      <p className="mx-auto max-w-6xl px-5 pb-20 text-ink/75">
+      <p data-reveal="up" className="mx-auto max-w-6xl px-5 pb-20 text-ink/75">
         We pick up and deliver across Thane, Mulund and Navi Mumbai. Not sure which store is closer? Message either one
         and we’ll sort it out.
       </p>

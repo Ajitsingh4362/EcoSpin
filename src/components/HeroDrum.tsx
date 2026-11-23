@@ -140,7 +140,7 @@ export function HeroDrum() {
   return (
     <div className="relative mx-auto w-full max-w-[34rem]">
       {/* Machine body */}
-      <div className="relative aspect-[5/6] rounded-[2.5rem] bg-gradient-to-b from-[#f7f3fb] to-[#ddd0ea] p-[7%] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-white/60">
+      <div className="relative aspect-[5/6] rounded-[2.5rem] bg-gradient-to-b from-white to-[#e9def3] p-[7%] shadow-[0_50px_90px_-35px_rgba(92,35,123,0.55),inset_0_2px_0_#fff] ring-1 ring-white">
         {/* control strip */}
         <div className="mb-[6%] flex items-center justify-between">
           <div className="flex gap-2" aria-hidden="true">
@@ -162,6 +162,7 @@ export function HeroDrum() {
           viewBox="0 0 500 500"
           className="w-full touch-pan-y select-none"
           style={{ cursor: "grab" }}
+          data-cursor="Spin!"
           role="img"
           aria-label="A washing machine drum full of tumbling clothes. Drag to spin it."
         >
@@ -258,7 +259,7 @@ export function HeroDrum() {
           <rect x="474" y="210" width="20" height="80" rx="10" fill="#8f7aa6" />
         </svg>
       </div>
-      <p className="mt-4 text-center text-sm text-white/60" aria-hidden="true">
+      <p className="mt-4 text-center text-sm text-purple/60" aria-hidden="true">
         Psst — grab the drum and give it a spin
       </p>
     </div>
