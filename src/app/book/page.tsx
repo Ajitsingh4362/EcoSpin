@@ -15,8 +15,10 @@ export default function BookPage() {
         title="Book a free pickup"
         intro="Fill this in and it opens WhatsApp with your request ready to send to the store. We’ll reply to confirm a time."
       />
-      <div className="mx-auto grid max-w-6xl gap-14 px-5 py-14 md:py-20 lg:grid-cols-[1fr_18rem]">
-        <BookingForm />
+      <div className="mx-auto grid max-w-6xl gap-14 px-5 py-14 md:py-20 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div className="min-w-0">
+          <BookingForm />
+        </div>
         <aside className="self-start rounded-3xl bg-lavender p-6">
           <h2 className="display text-3xl text-purple">Before you book</h2>
           <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/80">

@@ -17,6 +17,21 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Never allow sideways page scrolling on phones (Android + iPhone).
+   `clip` (unlike `hidden`) keeps position: sticky working; `hidden` is the fallback for old browsers. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

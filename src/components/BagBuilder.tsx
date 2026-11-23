@@ -72,9 +72,9 @@ export function BagBuilder() {
   return (
     <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr]">
       {/* ---------- Picker ---------- */}
-      <div>
+      <div className="min-w-0">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div role="tablist" aria-label="Category" className="flex gap-2">
+          <div role="tablist" aria-label="Category" className="flex flex-wrap gap-2">
             {priceList.map((c) => (
               <button
                 key={c.slug}
@@ -82,14 +82,14 @@ export function BagBuilder() {
                 role="tab"
                 aria-selected={cat === c.slug}
                 onClick={() => setCat(c.slug)}
-                className="display rounded-full px-5 py-2 text-2xl text-purple ring-1 ring-lilac hover:bg-white aria-selected:bg-purple aria-selected:text-white aria-selected:ring-purple"
+                className="display rounded-full px-4 py-1.5 text-xl text-purple sm:px-5 sm:py-2 sm:text-2xl ring-1 ring-lilac hover:bg-white aria-selected:bg-purple aria-selected:text-white aria-selected:ring-purple"
               >
                 {c.title}
               </button>
             ))}
           </div>
           {category.columns === "dc+press" && (
-            <div className="flex rounded-full bg-white p-1 ring-1 ring-lilac" role="radiogroup" aria-label="Service">
+            <div className="flex max-w-full rounded-full bg-white p-1 ring-1 ring-lilac" role="radiogroup" aria-label="Service">
               {(["dc", "press"] as const).map((m) => (
                 <button
                   key={m}
@@ -156,7 +156,7 @@ export function BagBuilder() {
       </div>
 
       {/* ---------- Bag ---------- */}
-      <div id="your-bag" className="self-start rounded-[2rem] bg-purple-deep p-6 text-white md:p-8 lg:sticky lg:top-28">
+      <div id="your-bag" className="min-w-0 self-start rounded-[2rem] bg-purple-deep p-6 text-white md:p-8 lg:sticky lg:top-28">
         <div className="flex items-center gap-5">
           <div ref={bagRef} className="shrink-0">
             <LaundryBag fill={fill} />

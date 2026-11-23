@@ -19,7 +19,7 @@ export function PriceTable() {
   return (
     <div>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div role="tablist" aria-label="Price categories" className="flex gap-2">
+        <div role="tablist" aria-label="Price categories" className="flex flex-wrap gap-2">
           {priceList.map((c) => (
             <button
               key={c.slug}
@@ -30,7 +30,7 @@ export function PriceTable() {
                 setTab(c.slug);
                 setQ("");
               }}
-              className="display rounded-full px-5 py-2 text-2xl text-purple ring-1 ring-lilac hover:bg-lavender aria-selected:bg-purple aria-selected:text-white aria-selected:ring-purple"
+              className="display rounded-full px-4 py-1.5 text-xl text-purple sm:px-5 sm:py-2 sm:text-2xl ring-1 ring-lilac hover:bg-lavender aria-selected:bg-purple aria-selected:text-white aria-selected:ring-purple"
             >
               {c.title}
             </button>
