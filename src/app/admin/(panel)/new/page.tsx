@@ -39,7 +39,9 @@ export default function NewOrderPage() {
   const [speed, setSpeed] = useState<Speed>("regular");
   const [packing, setPacking] = useState<Packing>("fold");
   const [discount, setDiscount] = useState("");
-  const [advance, setAdvance] = useState("");
+  const [advanceTyped, setAdvanceTyped] = useState("");
+  // Once a discount is entered, "Paid now" follows the discounted total until staff type their own amount.
+  const [advanceFollowsTotal, setAdvanceFollowsTotal] = useState(false);
   const [payMode, setPayMode] = useState<PaymentMode>("cash");
   const [note, setNote] = useState("");
 
@@ -69,6 +71,22 @@ export default function NewOrderPage() {
   }, [query, category, mode]);
 
   const totals = computeTotals(lines, speed, packing, Number(discount) || 0);
+  const advance = advanceFollowsTotal ? String(totals.total) : advanceTyped;
+
+  function onDiscount(raw: string) {
+    const value = raw.replace(/\D/g, "");
+    setDiscount(value);
+    if (Number(value) > 0) setAdvanceFollowsTotal(true);
+    else if (advanceFollowsTotal) {
+      setAdvanceFollowsTotal(false);
+      setAdvanceTyped("");
+    }
+  }
+
+  function onAdvance(raw: string) {
+    setAdvanceFollowsTotal(false);
+    setAdvanceTyped(raw.replace(/\D/g, ""));
+  }
   const due = dueDateFor(store, speed);
 
   function add(item: string, category: string, m: ServiceMode, price: number) {
@@ -381,10 +399,11 @@ export default function NewOrderPage() {
           />
           <div className="grid grid-cols-2 gap-3">
             <Field label="Discount (₹)">
-              <input className={`${input} py-2`} inputMode="numeric" value={discount} onChange={(e) => setDiscount(e.target.value.replace(/\D/g, ""))} />
+              <input className={`${input} py-2`} inputMode="numeric" value={discount} onChange={(e) => onDiscount(e.target.value)} />
             </Field>
             <Field label="Paid now (₹)">
-              <input className={`${input} py-2`} inputMode="numeric" value={advance} onChange={(e) => setAdvance(e.target.value.replace(/\D/g, ""))} />
+              <input className={`${input} py-2`} inputMode="numeric" value={advance} onChange={(e) => onAdvance(e.target.value)} />
+              {advanceFollowsTotal && <span className="mt-1 block text-xs text-muted">Total after discount. Type to change.</span>}
             </Field>
           </div>
           {Number(advance) > 0 && (
