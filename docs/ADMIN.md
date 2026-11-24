@@ -4,6 +4,21 @@ Counter par baithne wale staff ke liye panel: order lena, bill print karna, cust
 
 URL: `/admin` (website ke saath hi deploy hota hai, Google me index nahi hota).
 
+## 0. Password lock
+
+`/admin` ka har page password maangta hai (`/admin/login`). Password code me nahi, **environment variable** me rehta hai:
+
+| Kahan | Kya karna hai |
+|---|---|
+| **Vercel** | Project → Settings → Environment Variables → `ADMIN_PASSWORD` = apna password → Save → **Redeploy** |
+| Local computer | repo root me `.env.local` file: `ADMIN_PASSWORD=apna-password` (`.env.example` dekho) |
+
+- Login ke baad 30 din tak usi browser me dobara password nahi maangega. Upar right me **Log out** button hai.
+- **Password badalna** = Vercel me `ADMIN_PASSWORD` badlo aur redeploy karo. Sab devices apne aap logout ho jayenge.
+- `ADMIN_PASSWORD` set nahi hai to panel khulega hi nahi (login page par "No counter password is set" dikhega).
+- Kaise kaam karta hai: `src/proxy.ts` har `/admin` request par cookie check karta hai, `src/app/api/admin/login/route.ts` password match karke `httpOnly` cookie lagata hai, `src/admin/auth.ts` me logic hai. Galat password par 0.8 s ka delay hai, taaki guess karna mushkil ho.
+- Password lamba rakho (kam se kam 10 characters, jaise `Ecospin@Thane2026`).
+
 > **Abhi data kahan save ho raha hai?** Sirf usi browser me (localStorage). Matlab ek computer ka data doosre computer par nahi dikhega, aur browser data clear karne par mit jayega. Real use se pehle Supabase connect karna zaroori hai (neeche Step-by-step diya hai).
 
 ---
@@ -62,13 +77,18 @@ src/
 │   ├── admin/                ← counter panel (apna layout, website ka kuch load nahi hota)
 │   │   ├── layout.tsx
 │   │   ├── admin.css         ← receipt + print styles (80 mm thermal)
-│   │   ├── page.tsx          ← Today
-│   │   ├── new/page.tsx      ← New order
-│   │   ├── order/page.tsx    ← Order detail + receipt
-│   │   ├── orders/page.tsx
-│   │   └── customers/page.tsx
+│   │   ├── login/page.tsx    ← password screen
+│   │   └── (panel)/          ← login ke baad wale pages (top bar ke saath)
+│   │       ├── page.tsx          ← Today
+│   │       ├── new/page.tsx      ← New order
+│   │       ├── order/page.tsx    ← Order detail + receipt
+│   │       ├── orders/page.tsx
+│   │       └── customers/page.tsx
+│   ├── api/admin/login, logout   ← password check, cookie
 │   └── layout.tsx            ← sirf <html>, fonts, globals
+├── proxy.ts                  ← /admin ka darwaza: bina login ke /admin/login par bhejta hai
 ├── admin/
+│   ├── auth.ts               ← password + cookie logic (server only)
 │   ├── types.ts              ← Order, Customer, Payment … (DB ke shapes)
 │   ├── config.ts             ← hanger charge, WhatsApp mode, receipt terms, auto print
 │   ├── hooks.tsx             ← store switch + useRepoQuery (data load & auto refresh)
@@ -273,7 +293,7 @@ export { supabaseRepo as repo } from "./supabase-repo";
 ```
 
 ### Step 7 — Login screen
-Supabase lagne ke baad bina login data nahi aayega (RLS). `AdminShell.tsx` me session check karo:
+Abhi wala password lock (Section 0) website ka darwaza band karta hai, lekin Supabase ka data RLS ki wajah se tabhi milega jab browser **Supabase Auth** se logged in ho. Isliye Supabase lagate waqt `/admin/login` ko Supabase login (email + password) se badal do, aur `src/proxy.ts` + `src/admin/auth.ts` hata sakte ho (ya dono rakh sakte ho, double lock). `AdminShell.tsx` me session check:
 
 ```tsx
 // AdminShell ke andar

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AdminShell } from "@/admin/components/AdminShell";
 import "./admin.css";
 
 export const metadata: Metadata = {
@@ -8,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="admin-root flex min-h-full flex-1 flex-col">
-      <AdminShell>{children}</AdminShell>
-    </div>
-  );
+  return <div className="admin-root flex min-h-full flex-1 flex-col">{children}</div>;
 }
