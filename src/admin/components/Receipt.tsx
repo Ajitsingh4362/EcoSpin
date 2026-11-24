@@ -1,3 +1,4 @@
+import { LogoEn } from "@/components/Logo";
 import { formatPhone, inr } from "@/data/site";
 import { adminConfig, paymentLabel, speeds } from "../config";
 import { fmtDate, fmtDateTime, getStore } from "../lib/calc";
@@ -14,9 +15,8 @@ export function Receipt({ order }: { order: Order }) {
   return (
     <div className="receipt print-area">
       <div className="text-center">
-        <p className="display text-3xl leading-none">EcoSpin</p>
-        <p className="text-[11px] font-semibold">Dry-Cleaners · Shine Naturally</p>
-        <p className="mt-1 text-[10px] leading-tight">{store.address.join(", ")}</p>
+        <LogoEn className="receipt-logo mx-auto h-auto w-[56mm] max-w-full text-black" />
+        <p className="mt-2 text-[10px] leading-tight">{store.address.join(", ")}</p>
         <p className="text-[10px]">Call {formatPhone(store.call)} · WhatsApp {formatPhone(store.whatsapp)}</p>
       </div>
 

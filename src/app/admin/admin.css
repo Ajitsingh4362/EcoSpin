@@ -54,3 +54,10 @@
     display: none !important;
   }
 }
+
+/* Logo prints solid black on thermal paper. */
+.receipt-logo {
+  display: block;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
