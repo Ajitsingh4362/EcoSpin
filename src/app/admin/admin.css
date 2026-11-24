@@ -1,0 +1,56 @@
+/* Admin-only styles: page background, receipt look and printing. */
+
+.admin-root {
+  background: #f8f6fb;
+  min-height: 100%;
+}
+
+.receipt {
+  width: 74mm;
+  max-width: 100%;
+  background: #fff;
+  color: #000;
+  padding: 4mm;
+  font-family: var(--font-sans);
+}
+.receipt .r-rule {
+  border-top: 1px dashed #000;
+  margin: 2mm 0;
+}
+.receipt .r-totals {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: 1px;
+}
+.receipt .r-totals dd {
+  text-align: right;
+}
+
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 2mm;
+  }
+  html,
+  body,
+  .admin-root {
+    background: #fff !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    box-shadow: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

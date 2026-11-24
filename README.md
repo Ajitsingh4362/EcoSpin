@@ -21,3 +21,9 @@ npm run build   # same command Vercel runs
 2. Settings → Domains → add `ecospindrycleaners.com` and `www.ecospindrycleaners.com`, then add the DNS records Vercel shows at your domain registrar.
 
 Every push to `main` redeploys automatically.
+
+## Counter / admin panel
+
+The store counter panel lives at `/admin` (orders, receipts, WhatsApp, customers).
+Architecture, the Supabase connection steps and WhatsApp options are in [docs/ADMIN.md](docs/ADMIN.md);
+the database schema is in [supabase/schema.sql](supabase/schema.sql).

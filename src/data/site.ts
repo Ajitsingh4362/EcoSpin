@@ -20,6 +20,8 @@ export type Store = {
   closedOn: string;
   hours: string | null; // null = not confirmed yet
   turnaround: string;
+  turnaroundDays: number; // used by the admin panel to work out the due date
+  orderPrefix: string; // admin order numbers, e.g. TH-0001
   mapQuery: string;
 };
 
@@ -34,6 +36,8 @@ export const stores: Store[] = [
     closedOn: "Friday",
     hours: null,
     turnaround: "5 working days",
+    turnaroundDays: 5,
+    orderPrefix: "TH",
     mapQuery: "EcoSpin Dry Cleaners, Dev Darshan Building, Dongari Pada, G B Road, Thane West 400615",
   },
   {
@@ -46,6 +50,8 @@ export const stores: Store[] = [
     closedOn: "Friday",
     hours: "9:00 am – 9:00 pm",
     turnaround: "4 working days",
+    turnaroundDays: 4,
+    orderPrefix: "KH",
     mapQuery: "Green Heritage CHS, Plot 79/80, Sector 20, Kharghar, Navi Mumbai 410210",
   },
 ];
