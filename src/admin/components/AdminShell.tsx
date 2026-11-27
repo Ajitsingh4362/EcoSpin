@@ -6,6 +6,7 @@ import { useSyncExternalStore } from "react";
 import { LogOut, Plus } from "lucide-react";
 import { stores } from "@/data/site";
 import { AdminStoreProvider, useAdminStore } from "../hooks";
+import { adminConfig } from "../config";
 
 const nav = [
   { href: "/admin", label: "Today" },
@@ -77,11 +78,13 @@ function Bar() {
           >
             <Plus className="size-4" strokeWidth={3} /> New order
           </Link>
-          <form method="post" action="/api/admin/logout">
-            <button aria-label="Log out" title="Log out" className="rounded-lg p-2 text-lilac hover:bg-white/10 hover:text-white">
-              <LogOut className="size-5" />
-            </button>
-          </form>
+          {adminConfig.passwordLock && (
+            <form method="post" action="/api/admin/logout">
+              <button aria-label="Log out" title="Log out" className="rounded-lg p-2 text-lilac hover:bg-white/10 hover:text-white">
+                <LogOut className="size-5" />
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </header>

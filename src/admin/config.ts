@@ -3,6 +3,13 @@
 import type { OrderStatus, PaymentMode, Speed } from "./types";
 
 export const adminConfig = {
+  /**
+   * Password lock for /admin.
+   * false = panel opens without a password (temporarily switched off).
+   * true  = staff must log in with ADMIN_PASSWORD. Set back to true to turn the lock on again.
+   */
+  passwordLock: false,
+
   /** Extra charge per piece when packed on hangers. Set your real rate. */
   hangerChargePerPiece: 10,
 
